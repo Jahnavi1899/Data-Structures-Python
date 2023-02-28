@@ -11,12 +11,14 @@ class LinkedList:
         self.length = 1
 
     def print_list(self):
+        '''Prints all the node values in the linked list'''
         curr_node = self.head
         while curr_node is not None:
             print(curr_node.value)
             curr_node = curr_node.next
 
     def append(self, value):
+        '''Adds a node at the end of the linked list'''
         new_node = Node(value)
         if self.head is None: # or self.length == 0
             self.head = new_node
@@ -28,6 +30,7 @@ class LinkedList:
         return True
 
     def pop(self):
+        '''Removes the node at the end of the linked list'''
         if self.length == 0: # when the linked list is empty
             return None
         prev, temp = self.head, self.head
@@ -39,9 +42,10 @@ class LinkedList:
         self.length -= 1
         if self.length == 0: # when the linked list has only 1 node
             self.head, self.tail = None, None
-        return temp.value #return temp
+        return temp #return temp.value
 
     def prepend(self, value):
+        '''Adds a node at the beginning of the linked list'''
         new_node = Node(value)
         if self.length == 0:
             self.head, self.tail = new_node
@@ -52,6 +56,7 @@ class LinkedList:
         return True
 
     def pop_front(self):
+        '''Removes the first element of the linked list'''
         if self.length == 0:
             return None
         temp = self.head
@@ -60,18 +65,37 @@ class LinkedList:
         self.length -= 1
         if self.length == 0:
             self.tail = None
-        return temp.value #return temp
+        return temp #return temp.value
     
-    def get(self, index): # return the node at the given index
+    def get(self, index): 
+        '''return the node at the given index'''
         if index < 0 or index >= self.length:
             return None
-        count = 0
+        # count = 0
         temp = self.head
-        while count != index:
+        # while count != index:
+        #     temp = temp.next
+        #     count += 1
+        for _ in range(index):
             temp = temp.next
-            count += 1
-        return temp
+        return temp #temp.value
         
+    def set_value(self, index, value):
+        '''set the value at the given index'''
+        # approach 1
+        # if index < 0 or index >= self.length:
+        #     return None
+        # temp = self.head
+        # for _ in range(index):
+        #     temp = temp.next
+        # temp.value = value
+        # return temp.value #return temp.value
+        # aproach 2
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
 
 
 
@@ -79,6 +103,7 @@ class LinkedList:
     # def insert(self, index, value):
 linked_list = LinkedList(2)
 linked_list.append(4)
-linked_list.print_list()
-linked_list.pop_front()
+linked_list.append(10)
+linked_list.append(9)
+print(linked_list.set_value(2,2))
 linked_list.print_list()
