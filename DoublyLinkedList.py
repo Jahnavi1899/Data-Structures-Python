@@ -31,7 +31,7 @@ class DoublyLinkedist:
         return True
     
     def pop(self):
-        '''remove a node from the end of the list'''
+        '''remove a node from the end of the linked list'''
         if self.length == 0:
             return None
         temp = self.tail
@@ -45,6 +45,20 @@ class DoublyLinkedist:
         self.length -=1
         return temp
 
+    def prepend(self, value):
+        '''adds a node to the beginning of the linked list'''
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.length += 1
+        return True
+
+
 doubly_linked_list = DoublyLinkedist(1)
 doubly_linked_list.append(2)
 doubly_linked_list.append(3)
@@ -55,4 +69,6 @@ print(doubly_linked_list.pop())
 print(doubly_linked_list.pop())
 print(doubly_linked_list.pop())
 print(doubly_linked_list.pop())
-print(doubly_linked_list.pop())
+doubly_linked_list.prepend(8)
+print('\n')
+doubly_linked_list.print_list()
