@@ -90,7 +90,7 @@ class LinkedList:
         #     temp = temp.next
         # temp.value = value
         # return temp.value #return temp.value
-        # aproach 2
+        # approach 2
         temp = self.get(index)
         if temp:
             temp.value = value
