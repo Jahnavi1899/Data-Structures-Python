@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -73,7 +75,7 @@ def preorder_iterative(tree_node):
 #preorder_iterative(root)
 
 def inorder_iterative(tree_node):
-    stack = []
+    stack = [] 
     inorder_traversal = []
 
     node = tree_node
@@ -114,7 +116,7 @@ def postorder_iterative(tree_node):
     
     return postorder_traversal
 
-print(postorder_iterative(root))
+#print(postorder_iterative(root))
 
 # BFS traversal - level wise tree traversal
 # queue implementation
@@ -139,3 +141,22 @@ def BFS(tree_node):
                 queue.append(node.right)
 
 #BFS(root)
+
+# level wise traversal approach            
+def height_of_tree(root):
+    if root is None:
+        return 0
+    
+    queue = deque([root])
+    level = 0
+    while queue:
+        for i in range(len(queue)):
+            node = queue.popleft()
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        level += 1
+    return level
+
+#print(height_of_tree(root))
